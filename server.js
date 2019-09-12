@@ -25,6 +25,8 @@ app.use(express.json());
 const userController = require('./controllers/userRoutes')
 app.use('/users', userController);
 
+const boosterController = require('./controllers/boosterRoutes');
+app.use('/boosters', boosterController);
 
 
 app.listen(port, () => {console.log(`Port ${port} is listening for the job board app`)}  )
