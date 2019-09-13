@@ -1,7 +1,8 @@
 
 const express = require('express');
 const app = express();
-const  cors = require('cors')
+const  cors = require('cors');
+
 
 const port = process.env.PORT || 3000;
 
@@ -15,9 +16,9 @@ const corsOption = {
     preflightContinue: false
   }
   app.use(cors(corsOption))
-
-app.use(express.json());
-
+  app.use(express.json())
+  
+  
 
 // /////////////////////////////////////////
 // Routes

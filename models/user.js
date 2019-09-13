@@ -1,16 +1,48 @@
 const db = require('../db/db_connection');
+const jwt = require('jsonwebtoken');
 
-const login = (req, res) => {
-    db.one('SELECT * FROM users WHERE username = ${username} AND password = ${password}', req.body)
+
+  
+  const login = (req,res) => {
+    db.one('SELECT * FROM users WHERE username = $1', req.body.username)
     .then((data) => {
-        res.json({info:data, message:"success"})
+      if(!data){res.status(404).json({message:"wrong username/password"})}
+      else{
+        if(req.body.password == data.password){
+            // makes a token on login
+          jwt.sign(data, 'feedmecmore',(err, token) => {
+            res.status(201).append('Accept','true').json({token})
+          })
+         
+        }
+        else{
+          res.status(401).json({message:"wrong username/password"})
+        }
+      }
     })
-    .catch((err) => {
-      res.json({err:err})
-    })
-}
+  }
+  
+  const getUser = (req,res) => {
+    if(req.session.currentUser){
+      db.one('SELECT * FROM users WHERE id = $1',[req.session.currentUser.id])
+      .then((data) => {
+        console.log(data);
+        res.json(data)
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err)
+      })
+    }
+  }
 
-module.exports = {
-    login
-}
+  
+  
+  
+  module.exports ={
+    login,
+    getUser
+  }
 
+
+  
