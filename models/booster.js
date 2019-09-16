@@ -16,6 +16,20 @@ const indexScreen = (req, res) => {
     })
 }
 
+const showScreen = (req, res) => {
+    db.one('SELECT * FROM booster_jobs WHERE id = $1', req.params.id)
+    .then((data) => {
+        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({data, message: "success",userInfo})}
+         }) 
+    })
+    .catch((err) => {
+        res.json({err})
+    })
+}
+
 module.exports = {
-    indexScreen
+    indexScreen,
+    showScreen
 }

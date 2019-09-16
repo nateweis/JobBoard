@@ -4,5 +4,6 @@ const Booster = require('../models/booster')
 const MiddleWare = require('../models/middleware')
 
 router.get('/', MiddleWare.verifyToken, Booster.indexScreen)
+router.get('/:id', MiddleWare.verifyToken, Booster.showScreen)
 
 module.exports = router
