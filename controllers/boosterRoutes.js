@@ -5,5 +5,6 @@ const MiddleWare = require('../models/middleware')
 
 router.get('/', MiddleWare.verifyToken, Booster.indexScreen)
 router.get('/:id', MiddleWare.verifyToken, Booster.showScreen)
+router.put('/',MiddleWare.verifyToken, Booster.updateJob)
 
 module.exports = router
