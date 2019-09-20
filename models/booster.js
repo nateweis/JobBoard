@@ -3,6 +3,13 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const QueryFile = require('pg-promise').QueryFile;
 
+function sql(file) {
+    const fullPath = path.join(__dirname, file); 
+    return new QueryFile(fullPath, {minify: true});
+}
+const sqlUpdateBooster = sql('../db/updateBooster.sql')
+const sqlNewBooster = sql('../db/newBooster.sql')
+
 const indexScreen = (req, res) => {
     db.any('SELECT booster_jobs.id, booster_jobs.job_order_number, booster_jobs.description, booster_jobs.requested_by, booster_jobs.job_address, booster_jobs.stage FROM booster_jobs')
     .then((data) => { 
@@ -13,7 +20,7 @@ const indexScreen = (req, res) => {
     })
     .catch((err) => {
         res.json({err})
-        console.log(err);
+        // console.log(err);
         
     })
 }
@@ -33,15 +40,11 @@ const showScreen = (req, res) => {
     })
 }
 
-function sql(file) {
-    const fullPath = path.join(__dirname, file); 
-    return new QueryFile(fullPath, {minify: true});
-}
-const sqlUpdateBooster = sql('../db/updateBooster.sql')
+
 
 //update the booster job
 const updateJob = (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
    db.none(sqlUpdateBooster, req.body)
    .then(() => {   
     jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
@@ -50,13 +53,28 @@ const updateJob = (req, res) => {
        })
    })
    .catch((err) => {
-       console.log(err);
-       res.send(err)
+    //    console.log(err);
+       res.json(err)
    })
+}
+
+//  add a new booster job
+const newBoosterJob = (req, res) => {
+    db.none(sqlNewBooster, req.body)
+    .then(() => {
+        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"check it out, it worked"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err})
+    })
 }
 
 module.exports = {
     indexScreen,
     showScreen,
-    updateJob
+    updateJob,
+    newBoosterJob
 }
