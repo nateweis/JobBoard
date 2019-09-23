@@ -7,5 +7,6 @@ router.get('/', MiddleWare.verifyToken, Booster.indexScreen)
 router.get('/:id', MiddleWare.verifyToken, Booster.showScreen)
 router.put('/',MiddleWare.verifyToken, Booster.updateJob)
 router.post('/', MiddleWare.verifyToken, Booster.newBoosterJob )
+router.delete('/:id', MiddleWare.verifyToken, Booster.deleteJob)
 
 module.exports = router

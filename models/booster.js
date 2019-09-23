@@ -69,6 +69,24 @@ const newBoosterJob = (req, res) => {
     })
     .catch((err) => {
         res.json({err})
+        console.log(err);
+        
+    })
+}
+
+// Delete from booster jobs
+const deleteJob = (req,res) => {
+    db.none('DELETE FROM booster_jobs WHERE id = $1', req.params.id)
+    .then(() => {
+        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"check it out, it worked"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err})
+        console.log(err);
+        
     })
 }
 
@@ -76,5 +94,6 @@ module.exports = {
     indexScreen,
     showScreen,
     updateJob,
-    newBoosterJob
+    newBoosterJob,
+    deleteJob
 }
