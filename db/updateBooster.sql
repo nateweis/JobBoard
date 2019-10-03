@@ -23,6 +23,9 @@ pump_po =(SELECT NULLIF(${pump_po},NULL)),
 stage=(SELECT NULLIF(${stage} ,NULL)::integer),
 job_address=(SELECT NULLIF(${job_address} ,NULL)),
 requested_by =(SELECT NULLIF(${requested_by} ,NULL)),
+carrier =(SELECT NULLIF(${carrier} ,NULL)),
+bol_number =(SELECT NULLIF(${bol_number} ,NULL)),
+pro_number =(SELECT NULLIF(${pro_number} ,NULL)),
 description = (SELECT NULLIF(${description} ,NULL))
 WHERE id = ${id};
 

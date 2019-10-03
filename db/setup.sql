@@ -21,6 +21,9 @@ CREATE TABLE booster_jobs(
     due_date DATE,
     completed BOOL,
     shipdate_packlist VARCHAR(12),
-    notes TEXT
+    notes TEXT,
+    carrier VARCHAR(40),
+    bol_number VARCHAR(20),
+    pro_number VARCHAR(20)
 );
 INSERT INTO users(username, password, name) VALUES ('admin', 'admin', 'Naftali');
