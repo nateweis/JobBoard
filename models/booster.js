@@ -11,7 +11,7 @@ const sqlUpdateBooster = sql('../db/updateBooster.sql')
 const sqlNewBooster = sql('../db/newBooster.sql')
 
 const indexScreen = (req, res) => {
-    db.any('SELECT booster_jobs.id, booster_jobs.job_order_number, booster_jobs.description, booster_jobs.requested_by, booster_jobs.job_address, booster_jobs.stage FROM booster_jobs')
+    db.any('SELECT booster_jobs.id, booster_jobs.completed, booster_jobs.job_order_number, booster_jobs.description, booster_jobs.requested_by, booster_jobs.job_address, booster_jobs.stage FROM booster_jobs')
     .then((data) => { 
         jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
            if(err){res.json({message:'403 forbiddin'})} 
