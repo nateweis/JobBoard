@@ -58,6 +58,20 @@ const updateJob = (req, res) => {
    })
 }
 
+// turn a job complete/uncomplete
+const completeJob = (req, res) => {
+    db.none('UPDATE booster_jobs SET completed = $1 WHERE id = $2', [req.body.completed, req.body.id])
+    .then(() => {
+        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"check it out, it worked"})}
+           })
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+}
+
 //  add a new booster job
 const newBoosterJob = (req, res) => {
     db.none(sqlNewBooster, req.body)
@@ -95,5 +109,6 @@ module.exports = {
     showScreen,
     updateJob,
     newBoosterJob,
-    deleteJob
+    deleteJob,
+    completeJob
 }
