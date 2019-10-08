@@ -29,5 +29,8 @@ app.use('/users', userController);
 const boosterController = require('./controllers/boosterRoutes');
 app.use('/boosters', boosterController);
 
+const sewerController = require('./controllers/sewerRoutes');
+app.use('/sewers', sewerController);
+
 
 app.listen(port, () => {console.log(`Port ${port} is listening for the job board app`)}  )

@@ -1,4 +1,4 @@
-UPDATE booster_jobs
+UPDATE sewage_jobs
 SET
 job_order_number =(SELECT NULLIF(${job_order_number} ,NULL)),
 notes=(SELECT NULLIF(${notes} ,NULL)),
