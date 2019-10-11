@@ -32,5 +32,8 @@ app.use('/boosters', boosterController);
 const sewerController = require('./controllers/sewerRoutes');
 app.use('/sewers', sewerController);
 
+const fireController = require('./controllers/fireRoutes');
+app.use('/fire', fireController);
+
 
 app.listen(port, () => {console.log(`Port ${port} is listening for the job board app`)}  )
