@@ -10,7 +10,7 @@ SET
 job_order_number =(SELECT NULLIF(${job_order_number} ,NULL)),
 notes=(SELECT NULLIF(${notes} ,NULL)),
 shipdate_packlist=(SELECT NULLIF(${shipdate_packlist} ,NULL)),
-deposite_amount=(SELECT NULLIF(${deposite_amount} ,NULL)),
+deposit_amount=(SELECT NULLIF(${deposit_amount} ,NULL)),
 completed=(SELECT NULLIF(${completed} ,NULL)::boolean),
 due_date=(SELECT TO_DATE((SELECT NULLIF(${due_date} ,NULL)),'YYYY-MM-DD')),
 controller_received=(SELECT NULLIF(${controller_received} ,NULL)::boolean),

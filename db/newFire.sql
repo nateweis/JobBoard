@@ -2,7 +2,7 @@ INSERT INTO fire_jobs(
 job_order_number, date_created,description, requested_by,
 job_address, stage,pump_po,pump_eta,pump_erp,pump_received,
 updated_by,last_updated, due_date,completed,
-shipdate_packlist,deposite_amount,notes,
+shipdate_packlist,deposit_amount,notes,
 carrier,bol_number,pro_number,invoice_number)
 VALUES(
 (SELECT NULLIF(${job_order_number} ,NULL)),
@@ -20,7 +20,7 @@ ${updated_by},
 (SELECT NULLIF(${due_date} ,NULL)::date),
 (SELECT NULLIF(${completed} ,NULL)::boolean),
 (SELECT NULLIF(${shipdate_packlist} ,NULL)),
-(SELECT NULLIF(${deposite_amount} ,NULL)),
+(SELECT NULLIF(${deposit_amount} ,NULL)),
 (SELECT NULLIF(${notes} ,NULL)),
 (SELECT NULLIF(${carrier} ,NULL)),
 (SELECT NULLIF(${bol_number} ,NULL)),
