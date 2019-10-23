@@ -6,19 +6,20 @@ const jwt = require('jsonwebtoken');
   const login = (req,res) => {
     db.one('SELECT * FROM users WHERE username = $1', req.body.username)
     .then((data) => {
-      if(!data){res.status(404).json({message:"wrong username/password"})}
-      else{
-        if(req.body.password == data.password){
-            // makes a token on login
-          jwt.sign(data, 'feedmecmore',(err, token) => {
-            res.status(201).append('Accept','true').json({token})
-          })
-         
-        }
-        else{
-          res.status(401).json({message:"wrong username/password"})
-        }
+      if(req.body.password == data.password){
+        // makes a token on login
+      jwt.sign(data, 'feedmecmore',{expiresIn: '5m'},(err, token) => {
+        res.status(201).append('Accept','true').json({token})
+      })
+     
       }
+      else{
+        res.status(401).json({message:"attempt failed"})
+                
+      }
+    })
+    .catch((err) => {
+      res.json({message:"attempt failed"})
     })
   }
   
