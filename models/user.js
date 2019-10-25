@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
     .then((data) => {
       if(req.body.password == data.password){
         // makes a token on login
-      jwt.sign(data, 'feedmecmore',{expiresIn: '5m'},(err, token) => {
+      jwt.sign(data, 'feedmecmore',{expiresIn: '5s'},(err, token) => {
         res.status(201).append('Accept','true').json({token})
       })
      
