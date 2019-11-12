@@ -2,6 +2,8 @@ const db = require('../db/db_connection');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const QueryFile = require('pg-promise').QueryFile;
+require('dotenv').config()
+const secret = process.env.SECRET
 
 function sql(file) {
     const fullPath = path.join(__dirname, file); 
@@ -13,7 +15,7 @@ const sqlNewFire = sql('../db/newFire.sql')
 const indexScreen = (req, res) => {
     db.any('SELECT fire_jobs.id, fire_jobs.completed, fire_jobs.job_order_number, fire_jobs.description, fire_jobs.requested_by, fire_jobs.job_address, fire_jobs.stage FROM fire_jobs')
     .then((data) => { 
-        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
            if(err){res.json({message:'403 forbiddin'})} 
            else{res.json({data, message: "success",userInfo})}
         })         
@@ -30,7 +32,7 @@ const indexScreen = (req, res) => {
 const showScreen = (req, res) => {
     db.one('SELECT * FROM fire_jobs WHERE id = $1', req.params.id)
     .then((data) => {
-        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
             if(err){res.json({message:'403 forbiddin'})} 
             else{res.json({data, message: "success",userInfo})}
          }) 
@@ -47,7 +49,7 @@ const updateJob = (req, res) => {
     // console.log(req.body);
    db.none(sqlUpdateFire, req.body)
    .then(() => {   
-    jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+    jwt.verify(req.token, secret, (err, userInfo) => {
         if(err){res.json({message:'403 forbiddin'})} 
         else{res.json({message:"check it out, it worked"})}
        })
@@ -62,7 +64,7 @@ const updateJob = (req, res) => {
 const completeJob = (req, res) => {
     db.none('UPDATE fire_jobs SET completed = $1 WHERE id = $2', [req.body.completed, req.body.id])
     .then(() => {
-        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
             if(err){res.json({message:'403 forbiddin'})} 
             else{res.json({message:"check it out, it worked"})}
            })
@@ -76,7 +78,7 @@ const completeJob = (req, res) => {
 const newFireJob = (req, res) => {
     db.none(sqlNewFire, req.body)
     .then(() => {
-        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
             if(err){res.json({message:'403 forbiddin'})} 
             else{res.json({message:"check it out, it worked"})}
            })
@@ -92,7 +94,7 @@ const newFireJob = (req, res) => {
 const deleteJob = (req,res) => {
     db.none('DELETE FROM fire_jobs WHERE id = $1', req.params.id)
     .then(() => {
-        jwt.verify(req.token, 'feedmecmore', (err, userInfo) => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
             if(err){res.json({message:'403 forbiddin'})} 
             else{res.json({message:"check it out, it worked"})}
            })

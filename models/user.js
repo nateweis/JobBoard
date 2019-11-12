@@ -1,5 +1,7 @@
 const db = require('../db/db_connection');
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
+const secret = process.env.SECRET
 
 
   
@@ -8,7 +10,7 @@ const jwt = require('jsonwebtoken');
     .then((data) => {
       if(req.body.password == data.password){
         // makes a token on login
-      jwt.sign(data, 'feedmecmore',{expiresIn: '1d'},(err, token) => {
+      jwt.sign(data, secret,{expiresIn: '1d'},(err, token) => {
         res.status(201).append('Accept','true').json({token})
       })
      
