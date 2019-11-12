@@ -1,6 +1,7 @@
 {
   "name": "jobboard",
   "version": "1.0.0",
+  "engines": {"node":"12.4.0"},
   "description": "office job mangement app",
   "main": "server.js",
   "scripts": {
