@@ -13,7 +13,7 @@ const sqlUpdateSewer = sql('../db/updateSewer.sql')
 const sqlNewSewer = sql('../db/newSewer.sql')
 
 const indexScreen = (req, res) => {
-    db.any('SELECT sewage_jobs.id, sewage_jobs.completed, sewage_jobs.job_order_number, sewage_jobs.description, sewage_jobs.requested_by, sewage_jobs.job_address, sewage_jobs.stage FROM sewage_jobs')
+    db.any('SELECT sewage_jobs.id, sewage_jobs.completed, sewage_jobs.job_order_number, sewage_jobs.due_date, sewage_jobs.description, sewage_jobs.requested_by, sewage_jobs.job_address, sewage_jobs.stage FROM sewage_jobs')
     .then((data) => { 
         jwt.verify(req.token, secret, (err, userInfo) => {
            if(err){res.json({message:'403 forbiddin'})} 

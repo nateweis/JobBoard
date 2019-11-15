@@ -13,7 +13,7 @@ const sqlUpdateFire = sql('../db/updateFire.sql')
 const sqlNewFire = sql('../db/newFire.sql')
 
 const indexScreen = (req, res) => {
-    db.any('SELECT fire_jobs.id, fire_jobs.completed, fire_jobs.job_order_number, fire_jobs.description, fire_jobs.requested_by, fire_jobs.job_address, fire_jobs.stage FROM fire_jobs')
+    db.any('SELECT fire_jobs.id, fire_jobs.completed, fire_jobs.due_date, fire_jobs.job_order_number, fire_jobs.description, fire_jobs.requested_by, fire_jobs.job_address, fire_jobs.stage FROM fire_jobs')
     .then((data) => { 
         jwt.verify(req.token, secret, (err, userInfo) => {
            if(err){res.json({message:'403 forbiddin'})} 
