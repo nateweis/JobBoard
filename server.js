@@ -27,9 +27,9 @@ const corsOption = {
 // /////////////////////////////////////////
 // Routes
 // ////////////////////////////////////////
-app.use('/', (req, res) => {
-  res.send("Hello World")
-})
+// app.use('/', (req, res) => {
+//   res.send("Hello World")
+// })
 
 const userController = require('./controllers/userRoutes')
 app.use('/users', userController);
