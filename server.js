@@ -13,11 +13,14 @@ const port = process.env.PORT || 3000;
 // MiddleWear
 // ////////////////////////////////////////
 const corsOption = {
-    credentials: true  
+    origin:"*",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false
   }
-  app.use(cors(corsOption))
-  app.use(express.json())
   
+  app.use(express.json())
+  app.use(cors(corsOption))
   
 
 // /////////////////////////////////////////
