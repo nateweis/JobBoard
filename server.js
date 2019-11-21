@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 // MiddleWear
 // ////////////////////////////////////////
 const corsOption = {
-    origin:'*',
+    origin:'http://localhost:3000',
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
