@@ -1,3 +1,7 @@
+//***************************************************** */
+// Heroku Site : https://git.heroku.com/job-board-api.git
+//               https://job-board-api.herokuapp.com/
+//***************************************************** */
 
 const express = require('express');
 const app = express();
@@ -23,6 +27,10 @@ const corsOption = {
 // /////////////////////////////////////////
 // Routes
 // ////////////////////////////////////////
+app.use('/', (req, res) => {
+  res.send("Hello World")
+})
+
 const userController = require('./controllers/userRoutes')
 app.use('/users', userController);
 
