@@ -5,8 +5,7 @@
   "description": "office job mangement app",
   "main": "server.js",
   "scripts": {
-    "build": "babel public/js -d public/lib",
-    "start":"babel-node index.js"
+    "start":"node index.js"
   },
   "repository": {
     "type": "git",
