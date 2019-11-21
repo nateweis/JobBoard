@@ -1,6 +1,5 @@
 //***************************************************** */
-// Heroku Site : https://git.heroku.com/job-board-api.git
-//               https://job-board-api.herokuapp.com/
+// Heroku Site :  https://job-board-api.herokuapp.com/
 //***************************************************** */
 
 const express = require('express');
@@ -17,10 +16,9 @@ const corsOption = {
     origin:'*',
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Cache-Control', 'Authorization']
+    preflightContinue: false
   }
-  app.use(cors(corsOption))
+  app.use(cors())
   app.use(express.json())
   
   
