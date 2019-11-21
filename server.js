@@ -20,7 +20,7 @@ const corsOption = {
     preflightContinue: false,
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
   }
-  app.use(cors(corsOption))
+  app.use(cors())
   app.use(express.json())
   
   
