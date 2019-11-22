@@ -4,7 +4,7 @@
 
 const express = require('express');
 const app = express();
-const  cors = require('cors');
+// const  cors = require('cors');
 
 
 const port = process.env.PORT || 3000;
@@ -12,20 +12,28 @@ const port = process.env.PORT || 3000;
 // /////////////////////////////////////////
 // MiddleWear
 // ////////////////////////////////////////
-const corsOption = {
-    origin:"*",
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false
-  }
+// const corsOption = {
+//     origin:"*",
+//     credentials: true,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     preflightContinue: false
+//   }
   
-  app.use(cors())
-  app.options('*', cors())
+//   app.use(cors())
+//   app.options('*', cors())
+
   app.use(express.json())
-  // app.use((req, res, next) => {
-  //   res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Headers", "*");
-  // })
+
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header("Access-Control-Allow-Credentials", "true")
+    if(req.method === 'OPTIONS'){
+      res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+      return res.status(200).json({})
+    }
+    next();
+  })
   
 
 // /////////////////////////////////////////
