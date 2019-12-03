@@ -1,0 +1,36 @@
+version: "3"
+services:
+  app:
+    container_name: jb-app
+    restart: always
+    image: naftaliweiss/jb-frontend
+    ports:
+      - "80:3000"
+  api:
+    container_name: node-postgres-api
+    restart: always
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/job_board 
+      SECRET: feedmecmore 
+    links:
+      - db  
+    depends_on:
+      - db  
+  db:
+    image: postgres  
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: job_board
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" 
+
+volumes:
+  pgdata:
+    external: true       

@@ -7,4 +7,7 @@ const connectionString = process.env.DATABASE_URL || 'postgres://postgres:uspump
 const db = pgp(connectionString);
 db.connect();
 
+
+
+
 module.exports = db
