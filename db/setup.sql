@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS job_board;
 CREATE DATABASE job_board;
 \c job_board;
-CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(64), password TEXT, name VARCHAR(42));
+CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(64), password TEXT, name VARCHAR(42), admin BOOL);
 CREATE TABLE booster_jobs(
     id SERIAL PRIMARY KEY,
     job_order_number VARCHAR(20), 
@@ -81,4 +81,4 @@ CREATE TABLE fire_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15)
 );
-INSERT INTO users(username, password, name) VALUES ('admin', 'admin', 'Naftali');
+INSERT INTO users(username, password, name) VALUES ('admin', 'admin', 'Naftali', true);
