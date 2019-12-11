@@ -25,18 +25,28 @@ const secret = process.env.SECRET
     })
   }
   
-  const getUser = (req,res) => {
-    if(req.session.currentUser){
-      db.one('SELECT * FROM users WHERE id = $1',[req.session.currentUser.id])
-      .then((data) => {
-        console.log(data);
-        res.json(data)
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json(err)
-      })
-    }
+
+  const updatePassword = (req, res) => {
+    db.one('SELECT * FROM users WHERE id = $1', req.body.user.id)
+    .then((data) => {
+      if(req.body.old_pass === data.password){
+        db.none('UPDATE users SET password = $1 WHERE id = $2',[req.body.new_pass, req.body.user.id])
+        .then(() => {
+          jwt.verify(req.token, secret, (err, userInfo) => {
+            if(err){res.json({message:'password updated'})} 
+            else{res.json({message:"check it out, it worked"})}
+           })
+        })
+        .catch((err) => {
+          res.json({err, message:"error", status:400})
+          console.log(err);
+        })
+      }
+    })
+    .catch((err) => {
+      res.json({message:"error", status:400, err}).status(400)
+      console.log(err)
+    })
   }
 
   
@@ -44,7 +54,7 @@ const secret = process.env.SECRET
   
   module.exports ={
     login,
-    getUser
+    updatePassword
   }
 
 
