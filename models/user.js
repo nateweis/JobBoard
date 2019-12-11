@@ -91,7 +91,8 @@ const secret = process.env.SECRET
   
   module.exports ={
     login,
-    updatePassword
+    updatePassword,
+    getUsers
   }
 
 
