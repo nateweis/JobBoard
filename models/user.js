@@ -41,6 +41,8 @@ const secret = process.env.SECRET
           res.json({err, message:"error", status:400})
           console.log(err);
         })
+      }else{
+        res.json({message: "incorrect password for user"})
       }
     })
     .catch((err) => {
