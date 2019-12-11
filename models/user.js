@@ -25,7 +25,7 @@ const secret = process.env.SECRET
     })
   }
   
-
+// update a single password
   const updatePassword = (req, res) => {
     db.one('SELECT * FROM users WHERE id = $1', req.body.user.id)
     .then((data) => {
@@ -33,7 +33,7 @@ const secret = process.env.SECRET
         db.none('UPDATE users SET password = $1 WHERE id = $2',[req.body.new_pass, req.body.user.id])
         .then(() => {
           jwt.verify(req.token, secret, (err, userInfo) => {
-            if(err){res.json({message:'password updated'})} 
+            if(err){res.json({message:'password updated auth problem'})} 
             else{res.json({message:"check it out, it worked"})}
            })
         })
@@ -50,6 +50,41 @@ const secret = process.env.SECRET
       res.json({message:"error", status:404, err}).status(404)
       console.log(err)
     })
+  }
+
+  // get all the users info
+  const getUsers = (req, res) => {
+    db.any('SELECT * FROM users')
+    .then((data) => {
+      jwt.verify(req.token, secret, (err, userInfo) => {
+        if(err){res.json({message:'auth problem'})} 
+        else{res.json({message:"success", allUserInfo: data})}
+       })
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({err, message:"problem on retriving users info"})
+    })
+  }
+
+  // Delete a user from db 
+  const deleteUser = (req, res) => {
+    db.none('DELETE FROM users WHERE id = $1', req.params.id)
+    .then(() => {
+      jwt.verify(req.token, secret, (err, userInfo) => {
+        if(err){res.json({message:'403 forbiddin'})} 
+        else{res.json({message:"user deleted"})}
+       })
+    })
+    .catch((err) => {
+      res.json({err, message:"didnt delete"})
+      console.log(err);       
+    })
+  }
+
+  // Update any user any info
+  const updateAnyUserInfo = (req, res) => {
+    
   }
 
   
