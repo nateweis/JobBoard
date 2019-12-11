@@ -44,7 +44,7 @@ const secret = process.env.SECRET
       }
     })
     .catch((err) => {
-      res.json({message:"error", status:400, err}).status(400)
+      res.json({message:"error", status:404, err}).status(404)
       console.log(err)
     })
   }
