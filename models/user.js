@@ -44,9 +44,6 @@ const secret = process.env.SECRET
       }else{
         res.json({message: "incorrect password for user"})
       }
-      else{
-        res.json({message: "incorrect password for user"})
-      }
     })
     .catch((err) => {
       res.json({message:"error", status:404, err}).status(404)
