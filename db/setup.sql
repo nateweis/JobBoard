@@ -81,4 +81,4 @@ CREATE TABLE fire_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15)
 );
-INSERT INTO users(username, password, name) VALUES ('admin', 'admin', 'Naftali', true);
+INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
