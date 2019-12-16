@@ -110,7 +110,8 @@ const secret = process.env.SECRET
     login,
     updatePassword,
     getUsers,
-    makeANewUser
+    makeANewUser,
+    deleteUser
   }
 
 
