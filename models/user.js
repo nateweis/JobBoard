@@ -87,13 +87,30 @@ const secret = process.env.SECRET
     
   }
 
+  // make a new user
+
+  const makeANewUser =  (req, res) => {
+    db.none('INSERT INTO users (username, password, name, admin) VALUES (${username}, ${password}, ${name}, ${admin})', req.body)
+    .then(() => {
+      jwt.verify(req.token, secret, (err, userInfo) => {
+        if(err){res.json({message:'403 forbiddin'})} 
+        else{res.json({message:"new user made"})}
+       })
+    })
+    .catch((err) => {
+      res.json({err, message:"user not made"})
+      console.log(err);
+    })
+  }
+
   
   
   
   module.exports ={
     login,
     updatePassword,
-    getUsers
+    getUsers,
+    makeANewUser
   }
 
 
