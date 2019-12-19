@@ -84,7 +84,17 @@ const secret = process.env.SECRET
 
   // Update any user any info
   const updateAnyUserInfo = (req, res) => {
-    
+    db.none('UPDATE users SET username = ${username}, name = ${name}, admin = ${admin} WHERE id = ${id}', req.body)
+    .then(() => {
+      jwt.verify(req.token, secret, (err, userInfo) => {
+        if(err){res.json({message:'403 forbiddin'})} 
+        else{res.json({message:"user info updated"})}
+       })
+    })
+    .catch((err) => {
+      res.json({err, message:"didnt update"})
+      console.log(err);       
+    })
   }
 
   // make a new user
@@ -111,7 +121,8 @@ const secret = process.env.SECRET
     updatePassword,
     getUsers,
     makeANewUser,
-    deleteUser
+    deleteUser,
+    updateAnyUserInfo
   }
 
 
