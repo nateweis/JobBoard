@@ -6,6 +6,7 @@ const MiddleWare = require('../models/middleware')
 router.post('/', User.login);
 router.post('/newUser', MiddleWare.verifyToken, User.makeANewUser);
 router.put('/', MiddleWare.verifyToken, User.updatePassword);
+router.put('/anyUser', MiddleWare.verifyToken, User.updateAnyUserInfo);
 router.get('/', MiddleWare.verifyToken, User.getUsers);
 router.delete('/:id', MiddleWare.verifyToken, User.deleteUser);
 
