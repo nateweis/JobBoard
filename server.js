@@ -49,6 +49,9 @@ app.use('/users', userController);
 const boosterController = require('./controllers/boosterRoutes');
 app.use('/boosters', boosterController);
 
+const tankfillController = require('./controllers/tankfillRoutes');
+app.use('/tankfill', tankfillController);
+
 const sewerController = require('./controllers/sewerRoutes');
 app.use('/sewers', sewerController);
 
