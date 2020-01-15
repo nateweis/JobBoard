@@ -26,7 +26,8 @@ CREATE TABLE booster_jobs(
     carrier VARCHAR(40),
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
-    invoice_number VARCHAR(15)
+    invoice_number VARCHAR(15),
+    quantity INT
 );
 CREATE TABLE sewage_jobs(
     id SERIAL PRIMARY KEY,
@@ -55,7 +56,8 @@ CREATE TABLE sewage_jobs(
     carrier VARCHAR(40),
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
-    invoice_number VARCHAR(15)
+    invoice_number VARCHAR(15),
+    quantity INT
 );
 CREATE TABLE fire_jobs(
     id SERIAL PRIMARY KEY,
@@ -79,7 +81,8 @@ CREATE TABLE fire_jobs(
     carrier VARCHAR(40),
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
-    invoice_number VARCHAR(15)
+    invoice_number VARCHAR(15),
+    quantity INT
 );
 CREATE TABLE tankfill_jobs(
     id SERIAL PRIMARY KEY,
@@ -105,6 +108,7 @@ CREATE TABLE tankfill_jobs(
     carrier VARCHAR(40),
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
-    invoice_number VARCHAR(15)
+    invoice_number VARCHAR(15),
+    quantity INT
 );
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
