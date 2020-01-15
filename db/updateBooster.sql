@@ -28,7 +28,8 @@ carrier =(SELECT NULLIF(${carrier} ,NULL)),
 bol_number =(SELECT NULLIF(${bol_number} ,NULL)),
 pro_number =(SELECT NULLIF(${pro_number} ,NULL)),
 invoice_number =(SELECT NULLIF(${invoice_number} ,NULL)),
-description = (SELECT NULLIF(${description} ,NULL))
+description = (SELECT NULLIF(${description} ,NULL)),
+quantity = (SELECT NULLIF(${quantity} ,NULL)::integer)
 WHERE id = ${id};
 
 
