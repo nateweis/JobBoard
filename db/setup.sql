@@ -111,4 +111,12 @@ CREATE TABLE tankfill_jobs(
     invoice_number VARCHAR(15),
     quantity INT
 );
+CREATE TABLE jobs_link(
+    id SERIAL PRIMARY KEY,
+    number_linked INT,
+    job_count INT,
+    title VARCHAR(60),
+    job_address VARCHAR(100),
+    requested_by VARCHAR(60) 
+);
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
