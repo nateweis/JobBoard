@@ -3,7 +3,7 @@ job_order_number, date_created,description, requested_by,
 job_address, stage,pump_po,pump_eta,pump_erp,pump_received,
 updated_by,last_updated, due_date,completed,
 shipdate_packlist,deposit_amount,notes,
-carrier,bol_number,pro_number,invoice_number, quantity)
+carrier,bol_number,pro_number,invoice_number, quantity, connected_jobs)
 VALUES(
 (SELECT NULLIF(${job_order_number} ,NULL)),
 (SELECT NOW()::DATE),
@@ -26,5 +26,6 @@ ${updated_by},
 (SELECT NULLIF(${bol_number} ,NULL)),
 (SELECT NULLIF(${pro_number} ,NULL)),
 (SELECT NULLIF(${invoice_number} ,NULL)),
-(SELECT NULLIF(${quantity} ,NULL)::integer)
+(SELECT NULLIF(${quantity} ,NULL)::integer),
+(SELECT NULLIF(${connected_jobs} ,NULL))
 )
