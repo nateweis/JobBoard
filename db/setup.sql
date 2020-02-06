@@ -27,7 +27,8 @@ CREATE TABLE booster_jobs(
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
-    quantity INT
+    quantity INT,
+    connected_jobs VARCHAR(7)
 );
 CREATE TABLE sewage_jobs(
     id SERIAL PRIMARY KEY,
@@ -57,7 +58,8 @@ CREATE TABLE sewage_jobs(
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
-    quantity INT
+    quantity INT,
+    connected_jobs VARCHAR(7)
 );
 CREATE TABLE fire_jobs(
     id SERIAL PRIMARY KEY,
@@ -82,7 +84,8 @@ CREATE TABLE fire_jobs(
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
-    quantity INT
+    quantity INT,
+    connected_jobs VARCHAR(7)
 );
 CREATE TABLE tankfill_jobs(
     id SERIAL PRIMARY KEY,
@@ -109,7 +112,8 @@ CREATE TABLE tankfill_jobs(
     bol_number VARCHAR(20),
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
-    quantity INT
+    quantity INT,
+    connected_jobs VARCHAR(7)
 );
 CREATE TABLE jobs_link(
     id SERIAL PRIMARY KEY,
