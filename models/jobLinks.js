@@ -17,7 +17,23 @@ const retriveLinkJobs = (req, res) => {
       })
 }
 
+const addToLinkJobs = (req, res) => {
+    db.none('INSERT INTO jobs_link (number_linked, job_count, title) VALUES (${number_linked}, 1, ${title})', req.body)
+    .then(() => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"inserted new link job"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err, message: "problem inserting the new job link into the database"})
+        console.log(err);
+        
+    })
+}
+
 
 module.exports = {
-    retriveLinkJobs
+    retriveLinkJobs,
+    addToLinkJobs
 }
