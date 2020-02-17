@@ -4,6 +4,7 @@ const Link = require('../models/jobLinks');
 const MiddleWare = require('../models/middleware');
 
 router.get('/', MiddleWare.verifyToken, Link.retriveLinkJobs);
-router.post('/', MiddleWare.verifyToken, Link.addToLinkJobs);
+router.post('/', MiddleWare.verifyToken, Link.newLinkJob);
+router.put('/', MiddleWare.verifyToken, Link.addToLinkJobs);
 
 module.exports = router;
