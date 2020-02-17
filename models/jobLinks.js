@@ -17,7 +17,7 @@ const retriveLinkJobs = (req, res) => {
       })
 }
 
-const addToLinkJobs = (req, res) => {
+const newLinkJobs = (req, res) => {
     db.none('INSERT INTO jobs_link (number_linked, job_count, title) VALUES (${number_linked}, 1, ${title})', req.body)
     .then(() => {
         jwt.verify(req.token, secret, (err, userInfo) => {
@@ -32,8 +32,37 @@ const addToLinkJobs = (req, res) => {
     })
 }
 
+const addToLinkJobs = (req, res) => {
+    db.none('UPDATE jobs_link SET job_count = ${job_count} WHERE id = ${id}', req.body)
+    .then(() => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"updated link job"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err, message: "problem updating job link in the database"})
+        console.log(err);
+        
+    })
+
+    // cleanTable();
+}
+
+const cleanTable = () => {
+    db.none('DELETE FROM jobs_link WHERE job_count = number_linked')
+    .then(() => {
+        console.log("Deleted a Full Link")
+    })
+    .catch((err) => {
+        console.log(err)
+        console.log("Desbite there being a full db, there was a error")
+    })
+}
+
 
 module.exports = {
     retriveLinkJobs,
-    addToLinkJobs
+    addToLinkJobs,
+    newLinkJob
 }
