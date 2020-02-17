@@ -46,7 +46,7 @@ const addToLinkJobs = (req, res) => {
         
     })
 
-    // cleanTable();
+    cleanTable();
 }
 
 const cleanTable = () => {
