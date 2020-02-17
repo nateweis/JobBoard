@@ -64,5 +64,5 @@ const cleanTable = () => {
 module.exports = {
     retriveLinkJobs,
     addToLinkJobs,
-    newLinkJob
+    newLinkJobs
 }
