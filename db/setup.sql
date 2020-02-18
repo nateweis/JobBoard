@@ -8,7 +8,7 @@ CREATE TABLE booster_jobs(
     date_created DATE, 
     description TEXT,
     requested_by VARCHAR(60),
-    job_address VARCHAR(100),
+    job_address VARCHAR(200),
     stage INT,
     pump_po VARCHAR(20),
     pump_eta DATE,
@@ -28,7 +28,7 @@ CREATE TABLE booster_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
     quantity INT,
-    connected_jobs VARCHAR(7)
+    connected_jobs VARCHAR(50)
 );
 CREATE TABLE sewage_jobs(
     id SERIAL PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE sewage_jobs(
     date_created DATE, 
     description TEXT,
     requested_by VARCHAR(60),
-    job_address VARCHAR(100),
+    job_address VARCHAR(200),
     stage INT,
     pump_po VARCHAR(20),
     pump_eta DATE,
@@ -59,7 +59,7 @@ CREATE TABLE sewage_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
     quantity INT,
-    connected_jobs VARCHAR(7)
+    connected_jobs VARCHAR(50)
 );
 CREATE TABLE fire_jobs(
     id SERIAL PRIMARY KEY,
@@ -67,7 +67,7 @@ CREATE TABLE fire_jobs(
     date_created DATE, 
     description TEXT,
     requested_by VARCHAR(60),
-    job_address VARCHAR(100),
+    job_address VARCHAR(200),
     stage INT,
     pump_po VARCHAR(20),
     pump_eta DATE,
@@ -85,7 +85,7 @@ CREATE TABLE fire_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
     quantity INT,
-    connected_jobs VARCHAR(7)
+    connected_jobs VARCHAR(50)
 );
 CREATE TABLE tankfill_jobs(
     id SERIAL PRIMARY KEY,
@@ -93,7 +93,7 @@ CREATE TABLE tankfill_jobs(
     date_created DATE, 
     description TEXT,
     requested_by VARCHAR(60),
-    job_address VARCHAR(100),
+    job_address VARCHAR(200),
     stage INT,
     pump_po VARCHAR(20),
     pump_eta DATE,
@@ -113,14 +113,14 @@ CREATE TABLE tankfill_jobs(
     pro_number VARCHAR(20),
     invoice_number VARCHAR(15),
     quantity INT,
-    connected_jobs VARCHAR(7)
+    connected_jobs VARCHAR(50)
 );
 CREATE TABLE jobs_link(
     id SERIAL PRIMARY KEY,
     number_linked INT,
     job_count INT,
     title VARCHAR(60),
-    job_address VARCHAR(100),
+    job_address VARCHAR(200),
     requested_by VARCHAR(60) 
 );
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
