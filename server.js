@@ -61,5 +61,8 @@ app.use('/fire', fireController);
 const linkController = require('./controllers/linkJobRoutes');
 app.use('/link', linkController);
 
+const stockController = require('./controllers/stockRoutes');
+app.use('/stock', stockController);
+
 
 app.listen(port, () => {console.log(`Port ${port} is listening for the job board app`)}  )

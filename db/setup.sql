@@ -123,4 +123,13 @@ CREATE TABLE jobs_link(
     job_address VARCHAR(200),
     requested_by VARCHAR(60) 
 );
+
+CREATE TABLE stock(
+    id INT,
+    name VARCHAR(300),
+    edit BOOL,
+    update_date DATE,
+    update_by VARCHAR(50)
+);
+
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
