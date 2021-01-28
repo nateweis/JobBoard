@@ -128,7 +128,7 @@ CREATE TABLE stock(
     id INT,
     name VARCHAR(300),
     edit BOOL,
-    update_date DATE,
+    update_date TIMESTAMPTZ,
     update_by VARCHAR(50)
 );
 
