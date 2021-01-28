@@ -47,10 +47,26 @@ deleteItem = (req, res) => {
     })
 }
 
+updateItem = (req, res) => {
+    db.none('UPDATE stock SET name= ${name}, edit = false, update_date = (SELECT NOW()), update_by = ${user} WHERE id = ${id}', req.body)
+    .then(() => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"item got updated"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err})
+        console.log(err);
+        
+    })
+}
+
 
 
 module.exports = {
     addItem,
     getItems,
-    deleteItem
+    deleteItem,
+    updateItem
 }
