@@ -32,9 +32,25 @@ getItems = (req, res) => {
       })
 }
 
+deleteItem = (req, res) => {
+    db.none('DELETE FROM stock WHERE id = $1', req.params.id)
+    .then(() => {
+        jwt.verify(req.token, secret, (err, userInfo) => {
+            if(err){res.json({message:'403 forbiddin'})} 
+            else{res.json({message:"item got deleted"})}
+           })
+    })
+    .catch((err) => {
+        res.json({err})
+        console.log(err);
+        
+    })
+}
+
 
 
 module.exports = {
     addItem,
-    getItems
+    getItems,
+    deleteItem
 }
