@@ -5,7 +5,7 @@ const secret = process.env.SECRET
 
 
 addItem = (req, res) => {
-    db.none('INSERT INTO stock(name, edit, id, update_date, update_by) VALUES (${name}, ${edit}, ${id}, (SELECT NOW()), ${user})', req.body)
+    db.none('INSERT INTO stock(name, edit, id, update_date, update_by, catigory) VALUES (${name}, ${edit}, ${id}, (SELECT NOW()), ${user}, ${catigory})', req.body)
     .then(() => {
         jwt.verify(req.token, secret, (err, userInfo) => {
           if(err){res.json({message:'403 forbiddin not logged in'})} 
@@ -48,7 +48,7 @@ deleteItem = (req, res) => {
 }
 
 updateItem = (req, res) => {
-    db.none('UPDATE stock SET name= ${name}, edit = false, update_date = (SELECT NOW()), update_by = ${user} WHERE id = ${id}', req.body)
+    db.none('UPDATE stock SET name= ${name}, edit = false, update_date = (SELECT NOW()), update_by = ${user}, catigory = ${catigory} WHERE id = ${id}', req.body)
     .then(() => {
         jwt.verify(req.token, secret, (err, userInfo) => {
             if(err){res.json({message:'403 forbiddin'})} 

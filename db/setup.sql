@@ -129,7 +129,8 @@ CREATE TABLE stock(
     name VARCHAR(300),
     edit BOOL,
     update_date TIMESTAMPTZ,
-    update_by VARCHAR(50)
+    update_by VARCHAR(50),
+    catigory VARCHAR(32)
 );
 
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
