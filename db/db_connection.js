@@ -2,7 +2,10 @@ const promise = require('bluebird');
 const options = {
     promiseLib : promise
 }
-let ssl = null;
+
+let ssl = null
+if(process.env.DATABASE_URL) ssl = {rejectUnauthorized: false}
+
 const pgp = require('pg-promise')( options);
 const cString = process.env.DATABASE_URL || 'postgres://postgres:uspumpdatabase@localhost:5432/job_board';
 const config = {
