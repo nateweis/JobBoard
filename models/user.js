@@ -21,7 +21,7 @@ const secret = process.env.SECRET
       }
     })
     .catch((err) => {
-      res.json({message:"attempt failed"})
+      res.json({message:"attempt failed", err})
     })
   }
   
