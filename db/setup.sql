@@ -136,4 +136,4 @@ CREATE TABLE stock(
 INSERT INTO users(username, password, name, admin) VALUES ('admin', 'admin', 'Naftali', true);
 
 CREATE TABLE stockText(id SERIAL PRIMARY KEY, stock TEXT);
-INSERT INTO stockText(stock) VALUES('List Stock Here..............');
+INSERT INTO stockText(stock) VALUES('List Items Here..............');
